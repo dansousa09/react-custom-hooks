@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 const useDebounce = (value: string, delay: number) => {
   const [debounceValue, setDebounceValue] = useState(value);
@@ -15,3 +15,20 @@ const useDebounce = (value: string, delay: number) => {
 };
 
 export default useDebounce;
+
+// example:
+/*
+
+const [input, setInput] = useState("");
+const debouncedInput = useDebounce(input, 500);
+
+const arr = ["a", "b", "c", "d", "e", "f"];
+const list = useMemo(() => {
+  if (!input) return arr;
+
+  return arr.filter((item) => {
+    item.toLowerCase().includes(debouncedInput.toLowerCase());
+  });
+}, [debouncedInput, arr]);
+
+*/
